@@ -214,10 +214,21 @@
 
     function saveRepairsToCloud() {
       WebApp.showAlert('Saving to cloud stage 2!');
-      WebApp.CloudStorage.setItem('repairs', JSON.stringify(repairs), (err) => {
-        if (err) WebApp.showAlert('Failed to save to CloudStorage!');
-       //console.error("Failed to save to CloudStorage", err);
-      });
+      const key = 'repairs';
+      const value = JSON.stringify(repairs);
+      WebApp.CloudStorage.setItem(key, value,  function(err, saved) {
+            if (err) {
+                WebApp.showAlert('Error: ' + err);
+            } else {
+                if (saved) {
+                    if (typeof WebApp.cloudStorageItems[key] === 'undefined') {
+                        WebApp.cloudStorageKeys.push(key);
+                    }
+                    WebApp.cloudStorageItems[key] = value;
+                }
+             }
+        });
+      
     }
 
     function renderRepairs() {
@@ -287,7 +298,7 @@
         amount: parseFloat(document.getElementById('amount').value),
         date: new Date().toISOString()
       };
-      WebApp.showAlert('Repire Adding!');
+      WebApp.showAlert('Adding Repairs!');
       repairs.unshift(repair);
       saveRepairsToCloud();
       repairForm.reset();
