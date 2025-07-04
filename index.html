@@ -299,8 +299,8 @@
         date: new Date().toISOString()
       };
       repairs.unshift(repair);
-      WebApp.showAlert('Adding Repairs!');
       saveRepairsToCloud();
+      WebApp.showAlert('Adding Repairs!');
       repairForm.reset();
       toggleSheet(false);
       renderRepairs();
