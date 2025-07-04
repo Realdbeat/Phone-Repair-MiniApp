@@ -199,7 +199,7 @@
                 updateTotals();
               } catch (e) {
                 console.error("Failed to parse stored data");
-                WebApp.showAlert('Failed to parse stored data! and value is'+value);
+                WebApp.showAlert('Failed to parse stored data! and value is'+JSON.stringify(value));
               }
             }
           });
