@@ -27,6 +27,16 @@
       margin: auto;
       padding: 1rem;
     }
+    .search-box {
+      margin-bottom: 1rem;
+    }
+    .search-box input {
+      width: 100%;
+      padding: 0.75rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
     .repair-item {
       background: white;
       border-radius: 6px;
@@ -152,6 +162,10 @@
 <body>
   <header>📱 Phone Repair Shop ☣️😤</header>
   <main id="app">
+    <div class="search-box">
+      <input type="text" id="imeiSearch" placeholder="🔍 Search by IMEI..." oninput="filterByImei(this.value)" />
+    </div>
+
     <div class="totals" id="totals"></div>
     <div id="repairsList"></div>
 
@@ -168,6 +182,7 @@
       <form id="repairForm">
         <input type="text" id="customer" placeholder="Customer Name" required />
         <input type="text" id="model" placeholder="Phone Model" required />
+        <input type="text" id="imei" placeholder="Phone IMEI (15 digits)" required />
         <textarea id="description" placeholder="Repair Description" required></textarea>
         <input type="number" id="amount" placeholder="Amount Charged ($)" required />
         <button type="submit">Add Repair</button>
@@ -183,10 +198,13 @@
     const repairForm = document.getElementById('repairForm');
     const repairsList = document.getElementById('repairsList');
     const totalsDiv = document.getElementById('totals');
+    const imeiSearchInput = document.getElementById('imeiSearch');
+
     const bottomSheet = document.getElementById('bottomSheet');
     const sheetOverlay = document.getElementById('sheetOverlay');
 
     let repairs = [];
+    let filteredRepairs = [];
 
     function loadRepairsFromCloud() {
       WebApp.CloudStorage.getItem('repairs', (err, value) => {
@@ -225,14 +243,31 @@
       });
     }
 
-    function renderRepairs() {
+    function validateImei(imei) {
+      return /^\d{15}$/.test(imei.trim());
+    }
+
+    function filterByImei(query) {
+      query = query.trim().toLowerCase();
+      if (query === '') {
+        filteredRepairs = [...repairs];
+      } else {
+        filteredRepairs = repairs.filter(repair =>
+          repair.imei.toLowerCase().includes(query)
+        );
+      }
+      renderFilteredRepairs();
+    }
+
+    function renderFilteredRepairs() {
       repairsList.innerHTML = '';
-      repairs.forEach((repair, index) => {
+      (filteredRepairs.length ? filteredRepairs : repairs).forEach((repair, index) => {
         const item = document.createElement('div');
         item.className = 'repair-item';
         item.innerHTML = `
           <strong>${repair.customer}</strong><br/>
           ${repair.model}<br/>
+          🔢 IMEI: ${repair.imei || 'N/A'}<br/>
           ${repair.description}<br/>
           💵 $${parseFloat(repair.amount).toFixed(2)}<br/>
           <small>${new Date(repair.date).toLocaleString()}</small>
@@ -243,6 +278,11 @@
         `;
         repairsList.appendChild(item);
       });
+    }
+
+    function renderRepairs() {
+      filteredRepairs = [...repairs];
+      renderFilteredRepairs();
     }
 
     function updateTotals() {
@@ -285,9 +325,16 @@
 
     repairForm.addEventListener('submit', e => {
       e.preventDefault();
+      const imei = document.getElementById('imei').value.trim();
+      if (!validateImei(imei)) {
+        WebApp.showAlert("IMEI must be exactly 15 digits!");
+        return;
+      }
+
       const repair = {
         customer: document.getElementById('customer').value,
         model: document.getElementById('model').value,
+        imei,
         description: document.getElementById('description').value,
         amount: parseFloat(document.getElementById('amount').value),
         date: new Date().toISOString()
