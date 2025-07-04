@@ -11,8 +11,7 @@
       padding: 0;
       background: #f5f7fa;
       color: #333;
-      /* overflow-x: hidden; */
-      width:100%;
+      width: 100%;
     }
     header {
       background-color: #2a9d8f;
@@ -23,7 +22,8 @@
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
     main {
-      width: 100%!
+      width: 100%;
+      max-width: 600px;
       margin: auto;
       padding: 1rem;
     }
@@ -66,6 +66,7 @@
       bottom: -100%;
       left: 0;
       width: 100%;
+      max-width: 600px;
       margin: auto;
       background: white;
       border-radius: 12px 12px 0 0;
@@ -86,7 +87,7 @@
       right: 0;
       bottom: 0;
       background: transparent;
-      z-index: 999;
+      z-index: 10000;
       pointer-events: none;
       transition: background 0.3s ease-in-out;
     }
@@ -178,7 +179,7 @@
   <script>
     const WebApp = Telegram.WebApp;
     WebApp.ready();
-    
+
     const repairForm = document.getElementById('repairForm');
     const repairsList = document.getElementById('repairsList');
     const totalsDiv = document.getElementById('totals');
@@ -188,23 +189,18 @@
     let repairs = [];
 
     function loadRepairsFromCloud() {
-      WebApp.CloudStorage.getKeys((err, keys) => {
-        if (!err && keys.includes('repairs')) {
-          WebApp.CloudStorage.getItems('repairs', (err, value) => {
-            if (!err && value) {
-              try {
-                //WebApp.showAlert('successfully Value is! '+JSON.stringify(value));
-                repairs = JSON.parse(value.repairs);
-                renderRepairs();
-                updateTotals();
-              } catch (e) {
-                console.error("Failed to parse stored data");
-                WebApp.showAlert('Failed to parse stored data! Error is '+e);
-              }
-            }
-          });
+      WebApp.CloudStorage.getItem('repairs', (err, value) => {
+        if (!err && value) {
+          try {
+            repairs = JSON.parse(value);
+            renderRepairs();
+            updateTotals();
+          } catch (e) {
+            console.error("Failed to parse stored data");
+            WebApp.showAlert('Failed to parse stored data! Error: ' + e);
+          }
         } else {
-          WebApp.showAlert('Error Repaired not 🚫 fond! ');
+          WebApp.showAlert('No repairs found!');
           repairs = [];
           renderRepairs();
           updateTotals();
@@ -213,22 +209,20 @@
     }
 
     function saveRepairsToCloud() {
-      WebApp.showAlert('Saving to cloud stage 2!');
       const key = 'repairs';
       const value = JSON.stringify(repairs);
-      WebApp.CloudStorage.setItem(key, value,  function(err, saved) {
-            if (err) {
-                WebApp.showAlert('Error: ' + err);
-            } else {
-                if (saved) {
-                    if (typeof WebApp.cloudStorageItems[key] === 'undefined') {
-                        WebApp.cloudStorageKeys.push(key);
-                    }
-                    WebApp.cloudStorageItems[key] = value;
-                }
-             }
-        });
-      
+      WebApp.CloudStorage.setItem(key, value, function(err, saved) {
+        if (err) {
+          WebApp.showAlert('Save error: ' + err);
+        } else {
+          if (saved) {
+            if (typeof WebApp.cloudStorageItems[key] === 'undefined') {
+              WebApp.cloudStorageKeys.push(key);
+            }
+            WebApp.cloudStorageItems[key] = value;
+          }
+        }
+      });
     }
 
     function renderRepairs() {
