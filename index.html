@@ -193,8 +193,8 @@
           WebApp.CloudStorage.get('repairs', (err, value) => {
             if (!err && value) {
               try {
-                repairs = JSON.parse(value);
                 WebApp.showAlert('successfully Value is! '+value);
+                repairs = JSON.parse(value);
                 renderRepairs();
                 updateTotals();
               } catch (e) {
@@ -204,6 +204,7 @@
             }
           });
         } else {
+          WebApp.showAlert('Error Repaired not 🚫 fond! ');
           repairs = [];
           renderRepairs();
           updateTotals();
