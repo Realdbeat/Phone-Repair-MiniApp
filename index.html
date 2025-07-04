@@ -190,7 +190,7 @@
     function loadRepairsFromCloud() {
       WebApp.CloudStorage.getKeys((err, keys) => {
         if (!err && keys.includes('repairs')) {
-          WebApp.CloudStorage.get('repairs', (err, value) => {
+          WebApp.CloudStorage.getItems('repairs', (err, value) => {
             if (!err && value) {
               try {
                 WebApp.showAlert('successfully Value is! '+value);
