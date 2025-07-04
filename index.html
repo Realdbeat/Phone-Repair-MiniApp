@@ -194,7 +194,7 @@
             if (!err && value) {
               try {
                 WebApp.showAlert('successfully Value is! '+JSON.stringify(value));
-                repairs = JSON.parse(value);
+                repairs = JSON.parse(value.repairs);
                 renderRepairs();
                 updateTotals();
               } catch (e) {
