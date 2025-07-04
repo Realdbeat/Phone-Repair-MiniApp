@@ -212,7 +212,8 @@
 
     function saveRepairsToCloud() {
       WebApp.CloudStorage.set('repairs', JSON.stringify(repairs), (err) => {
-        if (err) console.error("Failed to save to CloudStorage", err);
+        if (err) WebApp.showAlert('Failed to save to CloudStorage!');
+       //console.error("Failed to save to CloudStorage", err);
       });
     }
 
