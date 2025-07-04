@@ -211,6 +211,7 @@
     }
 
     function saveRepairsToCloud() {
+      WebApp.showAlert('Saving to cloud stage 2!');
       WebApp.CloudStorage.setItem('repairs', JSON.stringify(repairs), (err) => {
         if (err) WebApp.showAlert('Failed to save to CloudStorage!');
        //console.error("Failed to save to CloudStorage", err);
@@ -284,6 +285,7 @@
         amount: parseFloat(document.getElementById('amount').value),
         date: new Date().toISOString()
       };
+      WebApp.showAlert('Repire Adding!');
       repairs.unshift(repair);
       saveRepairsToCloud();
       repairForm.reset();
