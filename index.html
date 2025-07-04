@@ -178,7 +178,8 @@
   <script>
     const WebApp = window.Telegram.WebApp;
     WebApp.ready();
-
+    WebApp.showAlert('Telegram load successfully!');
+    
     const repairForm = document.getElementById('repairForm');
     const repairsList = document.getElementById('repairsList');
     const totalsDiv = document.getElementById('totals');
