@@ -193,7 +193,7 @@
           WebApp.CloudStorage.getItems('repairs', (err, value) => {
             if (!err && value) {
               try {
-                WebApp.showAlert('successfully Value is! '+JSON.stringify(value));
+                //WebApp.showAlert('successfully Value is! '+JSON.stringify(value));
                 repairs = JSON.parse(value.repairs);
                 renderRepairs();
                 updateTotals();
