@@ -298,8 +298,8 @@
         amount: parseFloat(document.getElementById('amount').value),
         date: new Date().toISOString()
       };
-      WebApp.showAlert('Adding Repairs!');
       repairs.unshift(repair);
+      WebApp.showAlert('Adding Repairs!');
       saveRepairsToCloud();
       repairForm.reset();
       toggleSheet(false);
