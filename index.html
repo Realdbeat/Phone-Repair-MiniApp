@@ -19,8 +19,6 @@
       position: relative;
     height: var(--tg-viewport-stable-height, 100vh); /* Set the height to 100% of the viewport height */ 
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
     overflow: hidden;
     }
@@ -37,6 +35,8 @@
    .main {
       display:flex;
     flex-direction: column ;
+    justify-content: center;
+    align-items: center; 
     margin: 0;
     padding: 0;
     position: relative;
@@ -165,7 +165,7 @@ margin: 12px;
     .bottom-sheet input,
     .bottom-sheet textarea,
     .bottom-sheet button {
-      width: 100%;
+      width: var(--tg-viewport-stable-width, 100%);
       padding: 0.75rem;
       margin-bottom: 1rem;
       border: 1px solid #ccc;
@@ -186,7 +186,7 @@ margin: 12px;
   </style>
 </head>
 <body>
-  <header>📱Repair Register v1.2</header>
+  <header>📱Repair Register v1</header>
   <div class="main" id="app">
     <div class="search-box">
       <input type="text" id="imeiSearch" placeholder="🔍 Search by IMEI..." oninput="filterByImei(this.value)" />
