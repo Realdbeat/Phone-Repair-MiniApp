@@ -19,6 +19,7 @@
       display:flex;
       flex-direction: column ;
       position: relative;
+    height: var(--tg-viewport-stable-height, 100vh); /* Set the height to 100% of the viewport height */ 
     }
     header {
       background-color: #2a9d8f;
@@ -35,14 +36,13 @@
     padding: 0px;
     position: relative;
     width: var(--tg-viewport-stable-width, 100%);
-    height: var(--tg-viewport-stable-height, 100vh); /* Set the height to 100% of the viewport height */
 
     }
     .search-box {
       margin-bottom: 1rem;
+width: var(--tg-viewport-stable-width, 100%);
     }
     .search-box input {
-      width: var(--tg-viewport-stable-width, 100%);
       padding: 0.75rem;
       border-radius: 6px;
       border: 1px solid #ccc;
@@ -173,7 +173,7 @@
   </style>
 </head>
 <body>
-  <header>📱 Phone Repair Shop</header>
+  <header>📱 Phone Repair Register</header>
   <div class="main" id="app">
     <div class="search-box">
       <input type="text" id="imeiSearch" placeholder="🔍 Search by IMEI..." oninput="filterByImei(this.value)" />
