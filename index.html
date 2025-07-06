@@ -113,7 +113,10 @@ margin: 12px;
       padding: 0;
       z-index: 10001;
       transition: bottom 0.3s ease-in-out;
-    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     }
 
     .bottom-sheet.active {
@@ -200,7 +203,7 @@ display: flex;
   </style>
 </head>
 <body>
-  <header>📱Repair Register v1.1i</header>
+  <header>📱Repair Register v1.1ih</header>
   <div class="main" id="app">
     <div class="search-box">
       <input type="text" id="imeiSearch" placeholder="🔍 Search by IMEI..." oninput="filterByImei(this.value)" />
