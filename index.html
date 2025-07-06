@@ -106,10 +106,7 @@ margin: 12px;
       padding: 1rem;
       z-index: 10001;
       transition: bottom 0.3s ease-in-out;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    
     }
 
     .bottom-sheet.active {
@@ -162,10 +159,20 @@ margin: 12px;
     }
 
     /* Form Styles Inside Sheet */
+
+     #repairForm{
+width: var(--tg-viewport-stable-width, 100%);
+display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+}
     .bottom-sheet input,
     .bottom-sheet textarea,
     .bottom-sheet button {
-      width: var(--tg-viewport-stable-width, 100%);
+      width:  100%;
       padding: 0.75rem;
       margin-bottom: 1rem;
       border: 1px solid #ccc;
@@ -186,7 +193,7 @@ margin: 12px;
   </style>
 </head>
 <body>
-  <header>📱Repair Register v1</header>
+  <header>📱Repair Register v1.i</header>
   <div class="main" id="app">
     <div class="search-box">
       <input type="text" id="imeiSearch" placeholder="🔍 Search by IMEI..." oninput="filterByImei(this.value)" />
