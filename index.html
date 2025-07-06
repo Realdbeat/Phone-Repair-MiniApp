@@ -29,7 +29,7 @@
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
 
-    main {
+   .main {
       display:flex;
     flex-direction: column ;
     padding: 0px;
@@ -174,18 +174,13 @@
 </head>
 <body>
   <header>📱 Phone Repair Shop</header>
-  <main id="app">
+  <div class="main" id="app">
     <div class="search-box">
       <input type="text" id="imeiSearch" placeholder="🔍 Search by IMEI..." oninput="filterByImei(this.value)" />
     </div>
 
     <div class="totals" id="totals"></div>
     <div id="repairsList"></div>
-
-    <!-- Floating Action Button -->
-    <div class="fab" onclick="toggleSheet(true)">
-      <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
-    </div>
 
     <!-- Overlay -->
     <div class="sheet-overlay" id="sheetOverlay" onclick="toggleSheet(false)"></div>
@@ -201,7 +196,12 @@
         <button type="submit">Add Repair</button>
       </form>
     </div>
-  </main>
+  </div>
+
+  <!-- Floating Action Button -->
+    <div class="fab" onclick="toggleSheet(true)">
+      <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+    </div>
 
   <script src="https://telegram.org/js/telegram-web-app.js "></script>
   <script>
