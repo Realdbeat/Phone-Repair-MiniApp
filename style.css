@@ -86,21 +86,33 @@ margin: 12px;
       width: 100%;
     }
 
+
+   .colors{
+    color: #8F2D56;
+   color: #73D2DE;
+   color: #FBB13C;
+   color: #D81159;
+   color: #218380;
+   }
+
+
     .totals-main div {
       flex: 1;
       text-align: center;
       border-radius: 9px;
+      margin: 2px;
+      padding: 0.5rem;
     }
 
     .totals-main .monthly {
-        background-color: #2a9d8f;
+        background-color: #D81159;
         color: whitesmoke;
     }
 
 
 
     .totals-main .yearly {
-        background-color: #9d792a;
+        background-color: #FBB13C;
         color: whitesmoke;
     }
 
