@@ -10,6 +10,11 @@
         WebApp.SettingsButton.onClick(function() {
             WebApp.showAlert('Settings opened!');
         });
+    
+
+        WebApp.MainButton.onClick(function() {
+            toggleSheet(true);
+        });
     WebApp.MainButton.text = "Add Repair";
     WebApp.MainButton.show();
     BackButton.show();
