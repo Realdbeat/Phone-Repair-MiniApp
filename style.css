@@ -28,13 +28,13 @@ html{
    .main {
       display:flex;
     flex-direction: column ;
-    justify-content: center;
-    align-items: top; 
+    align-items: center; 
     margin: 0;
     padding: 0;
     position: relative;
     width: var(--tg-viewport-stable-width, 100%);
     overflow-x: scroll;
+    height: calc(var(--tg-viewport-stable-height, 100vh) - 60px); /* Adjust height to account for header */
 
     }
     .search-box {
