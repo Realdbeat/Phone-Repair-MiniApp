@@ -81,7 +81,7 @@ margin: 12px;
     .totals-main {
       display: flex;
       justify-content: space-between;
-      flex-direction: row;
+      flex-direction: column;
       font-weight: bold;
       width: 100%;
     }
