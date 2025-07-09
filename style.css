@@ -77,6 +77,41 @@ margin: 12px;
     .totals div {
       margin-bottom: 0.5rem;
     }
+
+    .totals-main {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: row;
+      font-weight: bold;
+      width: 100%;
+    }
+
+    .totals-main div {
+      flex: 1;
+      text-align: center;
+      border-radius: 9px;
+    }
+
+    .totals-main .monthly {
+        background-color: #2a9d8f;
+        color: whitesmoke;
+    }
+
+
+
+    .totals-main .yearly {
+        background-color: #9d792a;
+        color: whitesmoke;
+    }
+
+
+
+    .totals-main .daily{
+        background-color: #2a9d8f;
+        color: whitesmoke;
+    }
+
+
     .edit-delete {
       display: flex;
       justify-content: space-between;
