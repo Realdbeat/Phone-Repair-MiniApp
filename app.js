@@ -1,5 +1,19 @@
     const WebApp = Telegram.WebApp;
     WebApp.ready();
+    const BackButton = WebApp.BackButton;
+    const SettingsButton = WebApp.SettingsButton;
+
+        WebApp.BackButton.onClick(function() {
+            WebApp.showAlert('Back button pressed');
+        });
+
+        WebApp.SettingsButton.onClick(function() {
+            WebApp.showAlert('Settings opened!');
+        });
+    WebApp.MainButton.text = "Add Repair";
+    WebApp.MainButton.show();
+    BackButton.show();
+    SettingsButton.show();
 
     const repairForm = document.getElementById('repairForm');
     const repairsList = document.getElementById('repairsList');
