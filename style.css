@@ -34,7 +34,7 @@ html{
     padding: 0;
     position: relative;
     width: var(--tg-viewport-stable-width, 100%);
-    overflow: scroll;
+    overflow-x: scroll;
 
     }
     .search-box {
