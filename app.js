@@ -13,6 +13,7 @@
     
 
         WebApp.MainButton.onClick(function() {
+            WebApp.showAlert('main opened!');
             toggleSheet(true);
         });
     WebApp.MainButton.text = "Add Repair";
