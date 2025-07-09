@@ -13,6 +13,7 @@ html{
     height: var(--tg-viewport-stable-height, 100vh); /* Set the height to 100% of the viewport height */ 
     display: flex;
     flex-direction: column;
+    overflow: hidden;
     }
 
     header {
@@ -33,6 +34,7 @@ html{
     padding: 0;
     position: relative;
     width: var(--tg-viewport-stable-width, 100%);
+    overflow: scroll;
 
     }
     .search-box {
