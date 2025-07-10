@@ -141,18 +141,18 @@
         <div class='totals-main'>
         <div class='daily'>
         <h2>Daily Totals</h2>
-        <div class='repairs'>${dailyTotal.count} </div>
-        <div class='revenues'>#${dailyTotal.amount.toFixed(2)}</div>
+        <div class='repairs'>${round(dailyTotal.count, 2)} </div>
+        <div class='revenues'>#${round(dailyTotal.amount, 2)}</div>
         </div>
         <div class='monthly'>
         <h2>Monthly Totals</h2>
-        <div class='repairs'>${monthlyTotal.count}</div>
-        <div class='revenues'>#${monthlyTotal.amount.toFixed(2)}</div>
+        <div class='repairs'>${round(monthlyTotal.count,2)}</div>
+        <div class='revenues'>#${round(monthlyTotal.amount,2)}</div>
         </div>
         <div class='yearly'>
         <h2>Yearly Totals</h2>
-        <div class='repairs'>${yearlyTotal.count}</div>
-        <div class='revenues'>#${yearlyTotal.amount.toFixed(2)}</div>
+        <div class='repairs'>${round(yearlyTotal.count,2)}</div>
+        <div class='revenues'>#${round(yearlyTotal.amount,2)}</div>
         </div>
         </div>
       `;
@@ -210,6 +210,11 @@
         bottomSheet.classList.remove('active');
         sheetOverlay.classList.remove('active');
       }
+    }
+
+    function round(val, d) {
+        const k = Math.pow(10, d || 0);
+        return Math.round(val * k) / k;
     }
 
     // Load data when app starts
