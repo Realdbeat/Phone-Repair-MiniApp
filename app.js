@@ -10,14 +10,9 @@
         WebApp.SettingsButton.onClick(function() {
             WebApp.showAlert('Settings opened!');
         });
-    
 
-        WebApp.MainButton.onClick(function() {
-            WebApp.showAlert('main opened!');
-            toggleSheet(true);
-        });
-    WebApp.MainButton.text = "Add Repair";
-    WebApp.MainButton.show();
+   // WebApp.MainButton.text = "Add Repair";
+    //WebApp.MainButton.show();
     BackButton.show();
     SettingsButton.show();
 
@@ -145,16 +140,19 @@
         <h3>📊 Totals Calculation</h3>
         <div class='totals-main'>
         <div class='daily'>
-        <div>Daily Totals:</div>
-        <div>📱 ${dailyTotal.count} - 💵 #${dailyTotal.amount.toFixed(2)}</div>
+        <h2>Daily Totals</h2>
+        <div class='repairs'>${dailyTotal.count} </div>
+        <div class='revenues'>#${dailyTotal.amount.toFixed(2)}</div>
         </div>
         <div class='monthly'>
-        <div>Monthly Totals:</div>
-        <div>📱 ${monthlyTotal.count} - 💵 #${monthlyTotal.amount.toFixed(2)}</div>
+        <h2>Monthly Totals</h2>
+        <div class='repairs'>${monthlyTotal.count}</div>
+        <div class='revenues'>#${monthlyTotal.amount.toFixed(2)}</div>
         </div>
         <div class='yearly'>
-        <div>Yearly Totals:</div>
-        <div>📱 ${yearlyTotal.count} - 💵 #${yearlyTotal.amount.toFixed(2)}</div>
+        <h2>Yearly Totals</h2>
+        <div class='repairs'>${yearlyTotal.count}</div>
+        <div class='revenues'>#${yearlyTotal.amount.toFixed(2)}</div>
         </div>
         </div>
       `;

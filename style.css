@@ -39,8 +39,8 @@ html{
     }
     .search-box {
       margin-bottom: 1rem;
-width: var(--tg-viewport-stable-width, 100%);
-margin: 12px;
+      width: var(--tg-viewport-stable-width, 100%);
+     margin: 12px;
     display:flex;
     flex-direction: column ;
     justify-content: center;
@@ -64,6 +64,11 @@ margin: 12px;
 
     }
 
+
+    /*  
+    *Totals Styles
+    */
+
     .totals {
       margin-top: 2rem;
       width: 300px;
@@ -75,16 +80,11 @@ margin: 12px;
       margin-bottom: 2rem;
     }
 
-    .totals div {
-      margin-bottom: 0.5rem;
-    }
-
     .totals-main {
-      display: flex;
-      justify-content: space-between;
-      flex-direction: column;
-      font-weight: bold;
+      display: grid;
+      grid-template-columns: auto auto;
       width: 100%;
+      gap: 6px;
     }
 
 
@@ -98,11 +98,21 @@ margin: 12px;
 
 
     .totals-main div {
-      flex: 1;
-      text-align: center;
-      border-radius: 9px;
-      margin: 2px;
-      padding: 0.5rem;
+    text-align: center;
+    border-radius: 9px;
+    margin: 0px;
+    padding: 0.5rem;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    }
+
+    .totals-main div h2 {
+    font-size: 0.9rem;
+    margin: 0px;
+    padding: 0px;
     }
 
     .totals-main .monthly {
@@ -120,10 +130,35 @@ margin: 12px;
 
 
     .totals-main .daily{
-        background-color: #2a9d8f;
-        color: whitesmoke;
+    background-color: #2a9d8f;
+    color: whitesmoke;
+    grid-row: 1 / span 3;
     }
 
+
+    .repairs,.revenues {
+    font-size: 1.3rem;
+    font-weight: 900;
+    padding: 0px !important;
+    }
+
+    .repairs::before{
+        content: 'Repairs📱';
+        font-size: 0.6rem;
+        font-style: italic;
+        font-weight: 300;
+    }
+
+    .revenues::before {
+        content: 'Revenues💵';
+               font-size: 0.6rem;
+        font-style: italic;
+        font-weight: 300;
+     }
+
+    /*  
+    *End Totals Styles
+    */
 
     .edit-delete {
       display: flex;
@@ -219,6 +254,7 @@ display: flex;
     flex-direction: column;
     padding-top: 12px;
     margin: 0;
+    overflow-x: scroll;
 }
     .bottom-sheet input,
     .bottom-sheet textarea,
