@@ -22,9 +22,44 @@
     <div class="bottom-sheet" id="bottomSheet">
       <form id="repairForm">
         <input type="text" id="customer" placeholder="Customer Name" required />
-        <input type="text" id="model" placeholder="Phone Model" required />
+        <input type="text" id="model" placeholder="Phone Model" required list="phone-models" />
+        <datalist id="phone-models">
+          <option value="iPhone 15 Pro Max">
+          <option value="iPhone 14 Pro">
+          <option value="iPhone X">
+          <option value="iPhone XR">
+          <option value="iPhone 6s">
+          <option value="iPhone 7">
+          <option value="iPhone 8">
+          <option value="iPhone 5">
+          <option value="iPhone es">
+          <option value="Samsung Galaxy S24 Ultra">
+          <option value="Samsung Galaxy S23">
+          <option value="Samsung Galaxy A54">
+          <option value="Itel P40">
+          <option value="Itel A06">
+          <option value="Readme 12">
+          <option value="Xiaomi 14 Pro">
+          <option value="Tecno Camon 20">
+          <option value="Infinix Note 30">
+          <option value="Huawei P60 Pro">
+          <option value="Nokia G42">
+          <option value="Vivo V29">
+          <!-- Add more as needed -->
+        </datalist>
         <input type="text" id="imei" placeholder="Phone IMEI (15 digits)" required />
-        <textarea id="description" placeholder="Repair Description" required></textarea>
+        <textarea id="description" placeholder="Repair Description" required required list="repair-type"></textarea>
+        <datalist id="repair-type">
+          <option value="Frp Unlock">
+          <option value="Flashing">
+          <option value="Icloud Unlock">
+          <option value="Icloud Create">
+          <option value="Icloud Bypass">
+          <option value="Bootloop Repair">
+          <option value="Virus Removal">
+          <option value="Flashing Reload">
+          <option value="Other">
+        </datalist>
         <input type="number" id="amount" placeholder="Amount Charged ($)" required />
         <button type="submit">Add Repair</button>
       </form>
