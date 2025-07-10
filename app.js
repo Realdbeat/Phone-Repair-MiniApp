@@ -141,18 +141,18 @@
         <div class='totals-main'>
         <div class='daily'>
         <h2>Daily Totals</h2>
-        <div class='repairs'>${round(dailyTotal.count, 2)} </div>
-        <div class='revenues'>#${round(dailyTotal.amount, 2)}</div>
+        <div class='repairs'>${formatNumbers(dailyTotal.count)} </div>
+        <div class='revenues'>#${formatNumbers(dailyTotal.amount)}</div>
         </div>
         <div class='monthly'>
         <h2>Monthly Totals</h2>
-        <div class='repairs'>${round(monthlyTotal.count,2)}</div>
-        <div class='revenues'>#${round(monthlyTotal.amount,2)}</div>
+        <div class='repairs'>${formatNumbers(monthlyTotal.count)}</div>
+        <div class='revenues'>#${formatNumbers(monthlyTotal.amount)}</div>
         </div>
         <div class='yearly'>
         <h2>Yearly Totals</h2>
-        <div class='repairs'>${round(yearlyTotal.count,2)}</div>
-        <div class='revenues'>#${round(yearlyTotal.amount,2)}</div>
+        <div class='repairs'>${formatNumbers(yearlyTotal.count)}</div>
+        <div class='revenues'>#${formatNumbers(yearlyTotal.amount)}</div>
         </div>
         </div>
       `;
@@ -212,10 +212,14 @@
       }
     }
 
-    function round(val, d) {
-        const k = Math.pow(10, d || 0);
-        return Math.round(val * k) / k;
-    }
+    function formatNumbers(num) {
+        if (num >= 1000000) {
+            return (num / 1000000).toFixed(1) + 'M';
+        }else if(num >= 1000){
+                return (num / 1000).toFixed(1) + 'K';
+             }
+        return num.toString();
+        }
 
     // Load data when app starts
     loadRepairsFromCloud();
