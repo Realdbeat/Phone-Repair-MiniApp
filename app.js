@@ -221,5 +221,33 @@
         return num.toString();
         }
 
+
+document.getElementById('snapBtn').onclick = function() {
+  document.getElementById('cameraInput').click();
+};
+
+document.getElementById('cameraInput').onchange = function(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const img = new Image();
+    img.onload = function() {
+      // Compress to 10% quality
+      const canvas = document.createElement('canvas');
+      canvas.width = img.width;
+      canvas.height = img.height;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0);
+
+      const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.1); // 10% quality
+      document.getElementById('previewBox').innerHTML = `<img src="${compressedDataUrl}" style="max-width:100%;max-height:200px;border:1px solid #ccc;" />`;
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+};
+
     // Load data when app starts
     loadRepairsFromCloud();
