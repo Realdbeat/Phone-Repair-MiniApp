@@ -61,8 +61,12 @@
           <option value="Other">
         </datalist>
         <input type="number" id="amount" placeholder="Amount Charged ($)" required />
+      <button type="button" id="snapBtn">📷 Snap Photo</button>
+      <input type="file" id="cameraInput" accept="image/*" capture="environment" style="display:none;" />
+      <div id="previewBox"></div>  
         <button type="submit">Add Repair</button>
       </form>
+      
     </div>
   </div>
 
