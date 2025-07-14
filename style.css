@@ -248,13 +248,12 @@ html{
 
      #repairForm{
     width: 100%;
-   display: flex;
+    display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     padding-top: 12px;
     margin: 0;
-    overflow-x: scroll;
 }
     .bottom-sheet input,
     .bottom-sheet textarea,
@@ -323,6 +322,7 @@ html{
       flex-direction: column;
       align-content: center;
       align-items: center;
+      overflow-x: scroll;
     }
 
 
