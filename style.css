@@ -288,15 +288,18 @@ html{
       z-index: 10002;
       width: 40px !important;
       height: 40px !important;
-      border-radius: 50%;
+      border-radius: 9px;
+      font-size: 20px;
      display: flex;
     align-items: center;
     justify-content: center;
     align-content: center;
+    flex-direction: row;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
     .add-container .close-button svg {
+      margin-left: 2px;
       width: 24px;
       height: 24px;
       fill: #ffffff;
