@@ -212,6 +212,16 @@
       }
     }
 
+    function toggleAdd(show) {
+      if (show) {
+        add-container.classList.add('showing');
+        main.classList.add('not-showing');
+      } else {
+        add-container.classList.remove('not-showing');
+        main.classList.remove('showing');
+      }
+    }
+
     function formatNumbers(num) {
         if (num >= 1000000) {
             return (num / 1000000).toFixed(1) + 'M';
