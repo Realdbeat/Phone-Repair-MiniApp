@@ -287,6 +287,8 @@ html{
       border: none;
       cursor: pointer;
       z-index: 10002;
+      width: 40px;
+      height: 40px;
     }
 
     .close-button svg {
@@ -298,18 +300,21 @@ html{
     .close-button:hover {
       opacity: 0.8;
     }
+
     .add-container {
       position: fixed;
       bottom: 0;
       left: 0;
       width: 100%;
-      height: var(--tg-viewport-stable-height, 100vh);
+      height: var(--tg-viewport-stable-height, 100%);
       background: white;
-      padding: 20px;
+      padding: 8px;
+      padding-top: 40px ;
       z-index: 10001;
       display: none;
-      flex-direction: column;
+      justify-content: center;
       align-items: center;
+      flex-direction: column;
     }
 
 
@@ -329,7 +334,8 @@ html{
       color: white;
       cursor: pointer;
       transition: background 0.3s ease;
-    }add-container 
+    }
+    
 
     .add-container  button:hover {
       background-color: #21867a;
