@@ -279,7 +279,7 @@ html{
     }
 
     /* Close Button */
-    .close-button {
+    .add-container .close-button {
       position: absolute;
       top: 10px;
       right: 10px;
@@ -287,17 +287,17 @@ html{
       border: none;
       cursor: pointer;
       z-index: 10002;
-      width: 40px;
-      height: 40px;
+      width: 40px !important;
+      height: 40px !important;
     }
 
-    .close-button svg {
+    .add-container .close-button svg {
       width: 24px;
       height: 24px;
       fill: #2a9d8f;
       transition: opacity 0.3s ease;
     }
-    .close-button:hover {
+    .add-container .close-button:hover {
       opacity: 0.8;
     }
 
