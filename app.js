@@ -213,14 +213,16 @@
     }
 
     function toggleAdd(show) {
-      if (show) {
-        add-container.classList.add('showing');
-        main.classList.add('not-showing');
-      } else {
-        add-container.classList.remove('not-showing');
-        main.classList.remove('showing');
-      }
-    }
+  const addContainer = document.querySelector('.add-container');
+  const main = document.querySelector('.main');
+  if (show) {
+    addContainer.style.display = 'flex';
+    main.style.display = 'none';
+  } else {
+    addContainer.style.display = 'none';
+    main.style.display = 'flex';
+  }
+   }
 
     function formatNumbers(num) {
         if (num >= 1000000) {
