@@ -247,7 +247,7 @@ html{
     /* Form Styles Inside Sheet */
 
      #repairForm{
-    width: 90%;
+    width: 100%;
    display: flex;
     justify-content: center;
     align-items: center;
@@ -259,7 +259,7 @@ html{
     .bottom-sheet input,
     .bottom-sheet textarea,
     .bottom-sheet button {
-      width:  80%;
+      width:  90%;
       padding: 0.75rem;
       margin-bottom: 1rem;
       border: 1px solid #ccc;
@@ -281,27 +281,33 @@ html{
     /* Close Button */
     .add-container .close-button {
       position: absolute;
-      top: 10px;
+      top: 0;
       right: 10px;
-      background: none;
+      background: #2a9d8f;
       border: none;
       cursor: pointer;
       z-index: 10002;
       width: 40px !important;
       height: 40px !important;
+      border-radius: 50%;
+     display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
     .add-container .close-button svg {
       width: 24px;
       height: 24px;
-      fill: #2a9d8f;
+      fill: #ffffff;
       transition: opacity 0.3s ease;
     }
     .add-container .close-button:hover {
       opacity: 0.8;
     }
 
-    
+
     .add-container {
       position: fixed;
       bottom: 0;
@@ -311,17 +317,19 @@ html{
       width: 100%;
       height: var(--tg-viewport-stable-height, 100%);
       background: white;
-      padding: 8px;
-      padding-top: 40px ;
+      padding-top: 15px;
       z-index: 10001;
       display: none;
+      flex-direction: column;
+      align-content: center;
+      align-items: center;
     }
 
 
       .add-container  input,
     .add-container  textarea,
     .add-container button {
-      width:  80%;
+      width:  90%;
       padding: 0.75rem;
       margin-bottom: 1rem;
       border: 1px solid #ccc;
