@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="style.css?v=1.1iia" />
 </head>
 <body>
-  <header>📱Repair Register v1.0</header>
+  <header>📱Repair Register v1.2</header>
   <div class="main" id="app">
   <div class="totals" id="totals"></div>
     <div class="search-box">
@@ -45,9 +45,21 @@
         <input type="text" id="model" placeholder="Phone Model" required list="phone-models" />
         <datalist id="phone-models">
           <option value="iPhone 15 Pro Max">
-          <option value="iPhone 14 Pro">
+          <option value="iPhone 15 Pro">
           <option value="iPhone X">
           <option value="iPhone XR">
+          <option value="iPhone 12 Pro">
+          <option value="iPhone 12 Pro">
+          <option value="iPhone 12 Pro Max">
+          <option value="iPhone 6s">
+          <option value="iPhone 7 plus">
+          <option value="iPhone 13 Pro">
+          <option value="iPhone 13 Pro">
+          <option value="iPhone 13 Pro Max">
+          <option value="iPhone 14">
+          <option value="iPhone 14 Pro">
+          <option value="iPhone 14 Pro max">
+          <option value="iPhone 15 Pro Max">
           <option value="iPhone 6s">
           <option value="iPhone 7">
           <option value="iPhone 8">
@@ -67,7 +79,7 @@
           <option value="Vivo V29">
           <!-- Add more as needed -->
         </datalist>
-        <input type="text" id="imei" placeholder="Phone IMEI (15 digits)" maxlength="15" required />
+        <input type="number" id="imei" placeholder="Phone IMEI (15 digits)" maxlength="15" required />
         <input id="description" placeholder="Repair Description" required list="repair-type" />
         <datalist id="repair-type">
           <option value="Frp Unlock">
