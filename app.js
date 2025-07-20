@@ -167,13 +167,15 @@ const WebApp = Telegram.WebApp;
     repairForm.addEventListener('submit', e => {
       e.preventDefault();
       const imei = document.getElementById('imei').value.trim();
+      const repair = {};
      /*
       if (!validateImei(imei)) {
         WebApp.showAlert("IMEI must be exactly 15 digits!");
         return;
       } */
 
-      const repair = {
+      try {
+       repair = {
         customer: document.getElementById('customer').value,
         model: document.getElementById('model').value,
         imei,
@@ -181,7 +183,12 @@ const WebApp = Telegram.WebApp;
         amount: parseFloat(document.getElementById('amount').value),
         image: document.getElementById('scanimg').src || '',
         date: new Date().toISOString()
-      };
+      }; 
+      } catch (error) {
+         WebApp.showAlert('Save error: ' + err);
+         return;
+      }
+      
       repairs.unshift(repair);
       saveRepairsToCloud();
       repairForm.reset();
@@ -281,7 +288,7 @@ document.getElementById('cameraInput').onchange = function(event) {
         .then(response => response.json())
         .then(data => {
           if (data.secure_url) {
-            document.getElementById('previewBox').innerHTML = `<img src="${data.secure_url}" style="max-width:100%;max-height:200px;border:1px solid #ccc;" />`;
+            document.getElementById('previewBox').innerHTML = `<img src="${data.secure_url}" class="scanimg" style="max-width:100%;max-height:200px;border:1px solid #ccc;" />`;
           } else {
             document.getElementById('previewBox').innerHTML = `<span style="color:red;">Upload failed</span>`;
           }
