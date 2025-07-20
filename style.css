@@ -35,7 +35,7 @@ html{
     position: relative;
     width: var(--tg-viewport-stable-width, 100%);
     overflow: hidden;
-    overflow-x: scroll;
+    overflow-y: scroll;
     height: calc(var(--tg-viewport-stable-height, 100vh) - 60px); /* Adjust height to account for header */
 
     }
