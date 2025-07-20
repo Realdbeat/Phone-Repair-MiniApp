@@ -87,7 +87,7 @@ const WebApp = Telegram.WebApp;
         item.className = 'repair-item';
         item.innerHTML = `
         <div class="content">
-        <img src="phones.jpg" alt="" srcset="">
+        <img src="${repair.image || 'phones.jpg'}" alt="" srcset="">
         <div class="texts">
           <div class="rname">${repair.customer}</div>
           <div class="rmodel">${repair.model}</div>
@@ -166,10 +166,11 @@ const WebApp = Telegram.WebApp;
     repairForm.addEventListener('submit', e => {
       e.preventDefault();
       const imei = document.getElementById('imei').value.trim();
+     /*
       if (!validateImei(imei)) {
         WebApp.showAlert("IMEI must be exactly 15 digits!");
         return;
-      }
+      } */
 
       const repair = {
         customer: document.getElementById('customer').value,
@@ -177,6 +178,7 @@ const WebApp = Telegram.WebApp;
         imei,
         description: document.getElementById('description').value,
         amount: parseFloat(document.getElementById('amount').value),
+        image: document.getElementById('scanimg').src || '',
         date: new Date().toISOString()
       };
       repairs.unshift(repair);
@@ -259,7 +261,7 @@ document.getElementById('cameraInput').onchange = function(event) {
       ctx.drawImage(img, 0, 0);
 
       const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.1); // 10% quality
-      document.getElementById('previewBox').innerHTML = `<img src="${compressedDataUrl}" style="max-width:100%;max-height:200px;border:1px solid #ccc;" />`;
+      document.getElementById('previewBox').innerHTML = `<img src="${compressedDataUrl}" id="scanimg" style="max-width:100%;max-height:200px;border:1px solid #ccc;" />`;
     };
     img.src = e.target.result;
   };
