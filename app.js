@@ -290,7 +290,7 @@ document.getElementById('cameraInput').onchange = function(event) {
         .then(response => response.json())
         .then(data => {
           if (data.secure_url) {
-            document.getElementById('previewBox').innerHTML = `<img src="${data.secure_url}" class="scanimg" style="max-width:100%;max-height:200px;border:1px solid #ccc;" />`;
+            document.getElementById('previewBox').innerHTML = `<img src="${data.secure_url}" id="scanimg" style="max-width:100%;max-height:200px;border:1px solid #ccc;" />`;
           } else {
             document.getElementById('previewBox').innerHTML = `<span style="color:red;">Upload failed</span>`;
           }
