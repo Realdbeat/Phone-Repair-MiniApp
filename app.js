@@ -300,7 +300,7 @@ document.getElementById('cameraInput').onchange = function(event) {
         });
       }, 'image/jpeg', 0.1); // 10% quality
     };
-   // img.src = e.target.result;
+    img.src = e.target.result;
   };
   reader.readAsDataURL(file);
 };
