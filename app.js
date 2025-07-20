@@ -279,8 +279,8 @@ document.getElementById('cameraInput').onchange = function(event) {
             document.getElementById('previewBox').innerHTML = `<span style="color:red;">Upload failed</span>`;
           }
         })
-        .catch(() => {
-          document.getElementById('previewBox').innerHTML = `<span style="color:red;">Upload error</span>`;
+        .catch((e) => {
+          document.getElementById('previewBox').innerHTML = `<span style="color:red;">Upload error ${e}</span>`;
         });
       }, 'image/jpeg', 0.1); // 10% quality
     };
