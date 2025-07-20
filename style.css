@@ -294,7 +294,57 @@ html{
       background-color: #21867a;
     }
 
-    /* Close Button */
+/* 
+*Add Container Styles
+*This is a fixed container that appears on top of the main content
+*It is used to add new repairs or revenues
+*/
+
+    .add-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    width: 100%;
+    height: var(--tg-viewport-stable-height, 100%);
+    background: white;
+    padding: 0;
+    z-index: 10001;
+    display: none;
+    flex-direction: column;
+    align-content: center;
+    align-items: stretch;
+    overflow-x: scroll;
+    transition: all cubic-bezier(0.86, -0.06, 0.15, 1) 5s;
+    }
+
+
+      .add-container  input,
+    .add-container  textarea,
+    .add-container button {
+      width:  90%;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    .add-container  button {
+      background-color: #2a9d8f;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+
+    .add-container  button:hover {
+      background-color: #21867a;
+    }
+
+
+        /* Close Button */
     .add-container .head {
     display: flex;
     justify-content: space-between;
@@ -353,48 +403,4 @@ html{
     }
     .add-container .close-button:hover {
       opacity: 0.8;
-    }
-
-
-    .add-container {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    top: 0;
-    width: 100%;
-    height: var(--tg-viewport-stable-height, 100%);
-    background: white;
-    padding: 0;
-    z-index: 10001;
-    display: none;
-    flex-direction: column;
-    align-content: center;
-    align-items: stretch;
-    overflow-x: scroll;
-    transition: all cubic-bezier(0.86, -0.06, 0.15, 1) 5s;
-    }
-
-
-      .add-container  input,
-    .add-container  textarea,
-    .add-container button {
-      width:  90%;
-      padding: 0.75rem;
-      margin-bottom: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 1rem;
-    }
-
-    .add-container  button {
-      background-color: #2a9d8f;
-      color: white;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-
-
-    .add-container  button:hover {
-      background-color: #21867a;
     }
