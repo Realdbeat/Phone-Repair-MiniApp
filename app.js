@@ -109,6 +109,7 @@ const WebApp = Telegram.WebApp;
     function renderRepairs() {
       filteredRepairs = [...repairs];
       renderFilteredRepairs();
+      enableLongPressEditDelete();
     }
 
     function updateTotals() {
@@ -184,7 +185,7 @@ const WebApp = Telegram.WebApp;
       repairs.unshift(repair);
       saveRepairsToCloud();
       repairForm.reset();
-      toggleSheet(false);
+      toggleAdd(false);
       renderRepairs();
       updateTotals();
     });
@@ -317,5 +318,4 @@ function enableLongPressEditDelete() {
 }
     // Load data when app starts
     loadRepairsFromCloud();
-    enableLongPressEditDelete()
 
