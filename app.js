@@ -169,9 +169,8 @@ const WebApp = Telegram.WebApp;
 
     repairForm.addEventListener('submit', e => {
       e.preventDefault();
+      toggleloadder(true); // Show loader while uploading
        try {
-      
-      WebApp.showAlert('Saveing ');
      /*
       if (!validateImei(imei)) {
         WebApp.showAlert("IMEI must be exactly 15 digits!");
@@ -197,6 +196,7 @@ const WebApp = Telegram.WebApp;
       updateTotals();
     } catch (error) {
          WebApp.showAlert('Save error: ' + err);
+         toggleloadder(false); // Show loader while uploading
          return;
       }
       
@@ -279,9 +279,9 @@ const CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/dd2skzasq/image/upload';
 const CLOUDINARY_UPLOAD_PRESET = 'repair-upload';
 
 document.getElementById('cameraInput').onchange = function(event) {
+  
   const file = event.target.files[0];
   if (!file) return;
-  toggleloadder(true); // Show loader while processing
   const reader = new FileReader();
   reader.onload = function(e) {
     const img = new Image();
@@ -298,7 +298,7 @@ document.getElementById('cameraInput').onchange = function(event) {
         const formData = new FormData();
         formData.append('file', blob, 'photo.jpg');
         formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
-
+        toggleloadder(true); // Show loader while uploading
         // Upload to Cloudinary
         fetch(CLOUDINARY_URL, {
           method: 'POST',
