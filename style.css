@@ -348,8 +348,10 @@ html{
     .add-container .head {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 25px;
     align-items: baseline;
-    padding: 0 15px;
+    padding: 12px 5px;
+    height: 40px;
     background: #2a9d8f;
     color: white;
     border-radius: 0 0 6px 6px;
