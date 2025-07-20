@@ -168,7 +168,7 @@ const WebApp = Telegram.WebApp;
       e.preventDefault();
       WebApp.showAlert('Saveing ');
       const imei = document.getElementById('imei').value.trim();
-      const repair = {};
+      let repair = {};
      /*
       if (!validateImei(imei)) {
         WebApp.showAlert("IMEI must be exactly 15 digits!");
