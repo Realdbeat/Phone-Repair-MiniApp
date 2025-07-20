@@ -11,7 +11,25 @@
   <link rel="stylesheet" href="style.css?v=1.d" />
 </head>
 <body>
-  <header>📱Repair Register v1.d</header>
+  <header>
+  <div class="hidetotal">
+  <span id="toggleTotalsBtn" style="cursor:pointer;vertical-align:middle;">
+    <!-- Eye icon SVG (visible by default) -->
+    <svg id="eyeIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="vertical-align:middle;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/>
+      <circle cx="12" cy="12" r="3"/>
+    </svg>
+    <!-- Eye-off icon SVG (hidden by default) -->
+    <svg id="eyeOffIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="vertical-align:middle;display:none;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M17.94 17.94A10.94 10.94 0 0 1 12 19c-7 0-11-7-11-7a21.81 21.81 0 0 1 5.06-6.06"/>
+      <path d="M1 1l22 22"/>
+      <path d="M9.53 9.53A3.5 3.5 0 0 0 12 15.5a3.5 3.5 0 0 0 2.47-5.97"/>
+      <path d="M14.47 14.47A3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1-2.47 5.97"/>
+    </svg>
+  </span>
+  </div>
+  <div class="h2">📱Repair Register v1.d</div>
+  </header>
   <div class="main" id="app">
   <div class="totals" id="totals"></div>
     <div class="search-box">

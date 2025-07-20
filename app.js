@@ -24,6 +24,10 @@ const WebApp = Telegram.WebApp;
     const bottomSheet = document.getElementById('bottomSheet');
     const sheetOverlay = document.getElementById('sheetOverlay');
 
+    const toggleBtn = document.getElementById('toggleTotalsBtn');
+    const eyeIcon = document.getElementById('eyeIcon');
+    const eyeOffIcon = document.getElementById('eyeOffIcon');
+
     let repairs = [];
     let filteredRepairs = [];
 
@@ -273,7 +277,17 @@ document.getElementById('globalLoader').onclick = function() {
 };
 
 
-
+toggleBtn.onclick = function() {
+  if (totalsDiv.style.display === 'none') {
+    totalsDiv.style.display = '';
+    eyeIcon.style.display = '';
+    eyeOffIcon.style.display = 'none';
+  } else {
+    totalsDiv.style.display = 'none';
+    eyeIcon.style.display = 'none';
+    eyeOffIcon.style.display = '';
+  }
+};
 // Replace with your Cloudinary cloud name and unsigned upload preset
 const CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/dd2skzasq/image/upload';
 const CLOUDINARY_UPLOAD_PRESET = 'repair-upload';
