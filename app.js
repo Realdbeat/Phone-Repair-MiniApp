@@ -254,15 +254,35 @@ document.getElementById('cameraInput').onchange = function(event) {
   reader.onload = function(e) {
     const img = new Image();
     img.onload = function() {
-      // Compress to 10% quality
+      // Compress image to 10% quality
       const canvas = document.createElement('canvas');
       canvas.width = img.width;
       canvas.height = img.height;
       const ctx = canvas.getContext('2d');
       ctx.drawImage(img, 0, 0);
 
-      const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.1); // 10% quality
-      document.getElementById('previewBox').innerHTML = `<img src="${compressedDataUrl}" id="scanimg" style="max-width:100%;max-height:200px;border:1px solid #ccc;" />`;
+      canvas.toBlob(function(blob) {
+        // Prepare form data
+        const formData = new FormData();
+        formData.append('image', blob, 'photo.jpg');
+
+        // Upload to server
+        fetch('upload.php', {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.url) {
+            document.getElementById('previewBox').innerHTML = `<img src="${data.url}" style="max-width:100%;max-height:200px;border:1px solid #ccc;" />`;
+          } else {
+            document.getElementById('previewBox').innerHTML = `<span style="color:red;">Upload failed</span>`;
+          }
+        })
+        .catch(() => {
+          document.getElementById('previewBox').innerHTML = `<span style="color:red;">Upload error</span>`;
+        });
+      }, 'image/jpeg', 0.1); // 10% quality
     };
     img.src = e.target.result;
   };
