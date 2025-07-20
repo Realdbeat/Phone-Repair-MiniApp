@@ -1,4 +1,4 @@
-    const WebApp = Telegram.WebApp;
+const WebApp = Telegram.WebApp;
     WebApp.ready();
     const BackButton = WebApp.BackButton;
     const SettingsButton = WebApp.SettingsButton;
@@ -86,12 +86,17 @@
         const item = document.createElement('div');
         item.className = 'repair-item';
         item.innerHTML = `
-          <strong>${repair.customer}</strong><br/>
-          ${repair.model}<br/>
-          🔢 IMEI: ${repair.imei || 'N/A'}<br/>
-          ${repair.description}<br/>
-          💵 $${parseFloat(repair.amount).toFixed(2)}<br/>
+        <div class="content">
+        <img src="phones.jpg" alt="" srcset="">
+        <div class="texts">
+          <div class="rname">${repair.customer}</div>
+          <div class="rmodel">${repair.model}</div>
+          <div class="rimei">${repair.imei || '35000000000000'}</div>
+          <div class="rwork">${repair.description}</div>
+          <div class="rprice">#${formatNumbers(repair.amount)}</div>
           <small>${new Date(repair.date).toLocaleString()}</small>
+        </div>
+        </div>
           <div class="edit-delete">
             <button onclick="editRepair(${index})">Edit</button>
             <button onclick="deleteRepair(${index})">Delete</button>
@@ -261,5 +266,54 @@ document.getElementById('cameraInput').onchange = function(event) {
   reader.readAsDataURL(file);
 };
 
+// Enable long press to show edit/delete options
+// Uncomment the line below to enable long press edit/delete functionality
+//enableLongPressEditDelete();
+function enableLongPressEditDelete() {
+  document.querySelectorAll('.repair-item').forEach(item => {
+    let pressTimer;
+    const editDelete = item.querySelector('.edit-delete');
+
+    // Helper to show/hide
+    function showEditDelete() {
+      if (editDelete) editDelete.style.display = 'flex';
+    }
+    function hideEditDelete() {
+      if (editDelete) editDelete.style.display = 'none';
+    }
+
+    // Mouse events
+    item.addEventListener('mousedown', startPress);
+    item.addEventListener('mouseup', cancelPress);
+    item.addEventListener('mouseleave', cancelPress);
+
+    // Touch events for mobile
+    item.addEventListener('touchstart', startPress);
+    item.addEventListener('touchend', cancelPress);
+    item.addEventListener('touchcancel', cancelPress);
+
+    function startPress(e) {
+      cancelPress();
+      pressTimer = setTimeout(showEditDelete, 500); // 500ms long press
+    }
+
+    function cancelPress(e) {
+      clearTimeout(pressTimer);
+    }
+
+    // Hide on tap/click outside or double tap/click
+    document.addEventListener('touchstart', function(ev) {
+      if (editDelete && !item.contains(ev.target)) hideEditDelete();
+    });
+    document.addEventListener('mousedown', function(ev) {
+      if (editDelete && !item.contains(ev.target)) hideEditDelete();
+    });
+
+    item.addEventListener('dblclick', hideEditDelete);
+    item.addEventListener('dbltap', hideEditDelete); // Custom event, not standard, but for completeness
+  });
+}
     // Load data when app starts
     loadRepairsFromCloud();
+    enableLongPressEditDelete()
+

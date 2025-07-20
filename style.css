@@ -68,7 +68,11 @@ html{
     border: 2px solid #8F2D56;
     }
 
-
+/*
+*Repair Item Styles
+*These styles are used for each repair item displayed in the list
+*They include a background, border radius, padding, and box shadow
+*/
 
     .repair-item {
       background: white;
@@ -78,9 +82,54 @@ html{
       margin: 12px;
       margin-bottom: 1rem;
       box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-
     }
 
+
+    .repair-item .content {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    text-align: center;
+    align-content: stretch;
+    justify-content: flex-start;
+    width: 100%;
+    overflow: hidden;
+    }
+
+
+
+    .repair-item .content .texts {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    width: 80%;
+    margin: 0 5px;
+    justify-content: flex-start;
+    /* align-content: flex-start; */
+    align-items: flex-start;
+    }
+
+    .texts .rname{
+    font-size: 1.1rem;
+    font-weight: 800;
+    }
+
+    .texts div{
+    font-size: 0.8rem;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 80%;
+    overflow: hidden;
+    text-align: left;
+    }
+
+
+   .repair-item .content img {
+    height: 110px;
+    width: 60px;
+    object-fit: cover;
+    border-radius: 3px;
+    }
 
     /*  
     *Totals Styles
@@ -178,7 +227,7 @@ html{
     */
 
     .edit-delete {
-      display: flex;
+      display: none;
       justify-content: space-between;
       margin-top: 0.5rem;
     }
