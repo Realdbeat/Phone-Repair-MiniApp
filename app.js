@@ -166,9 +166,8 @@ const WebApp = Telegram.WebApp;
 
     repairForm.addEventListener('submit', e => {
       e.preventDefault();
+       try {
       
-      const imei = document.getElementById('imei').value.trim();
-      let repair = {};
       WebApp.showAlert('Saveing ');
      /*
       if (!validateImei(imei)) {
@@ -176,20 +175,16 @@ const WebApp = Telegram.WebApp;
         return;
       } */
 
-      try {
-       repair = {
+      const imei = document.getElementById('imei').value.trim();
+      const repair = {
         customer: document.getElementById('customer').value,
         model: document.getElementById('model').value,
         imei,
         description: document.getElementById('description').value,
         amount: parseFloat(document.getElementById('amount').value),
-        image: document.getElementById('scanimg').src || '',
+        image: document.getElementById('scanimg').src,
         date: new Date().toISOString()
       }; 
-      } catch (error) {
-         WebApp.showAlert('Save error: ' + err);
-         return;
-      }
       
       repairs.unshift(repair);
       saveRepairsToCloud();
@@ -197,6 +192,11 @@ const WebApp = Telegram.WebApp;
       toggleAdd(false);
       renderRepairs();
       updateTotals();
+    } catch (error) {
+         WebApp.showAlert('Save error: ' + err);
+         return;
+      }
+      
     });
 
     function deleteRepair(index) {
