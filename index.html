@@ -8,10 +8,10 @@
     <meta name="MobileOptimized" content="176" />
     <meta name="HandheldFriendly" content="True" />
   <title>Phone Repair Tracker</title>
-  <link rel="stylesheet" href="style.css?v=1.2i" />
+  <link rel="stylesheet" href="style.css?v=1.c" />
 </head>
 <body>
-  <header>📱Repair Register v1.b</header>
+  <header>📱Repair Register v1.c</header>
   <div class="main" id="app">
   <div class="totals" id="totals"></div>
     <div class="search-box">
@@ -40,9 +40,7 @@
 <div class="add-container">
   <div class="head"><button onclick="toggleAdd(false)" class="close-button">Cancel</button >
     <h2>Add New Repair</h2>
-    <button onclick="toggleAdd(false)" class="close-button">Close
-  <svg viewBox="0 0 24 24" width="24" height="24"><path d="M18.3 5.71a1 1 0 0 0-1.41 0L12 10.59 7.11 5.7a1 1 0 1 0-1.41 1.41L10.59 12l-4.89 4.89a1 1 0 1 0 1.41 1.41L12 13.41l4.89 4.89a1 1 0 0 0 1.41-1.41L13.41 12l4.89-4.89a1 1 0 0 0 0-1.4z"/></svg>
-  </button >
+    <button onclick="toggleAdd(false)" class="close-button">Close</button >
 </div>
     
      
@@ -85,7 +83,11 @@
           <option value="Vivo V29">
           <!-- Add more as needed -->
         </datalist>
-        <input type="number" id="imei" placeholder="Phone IMEI (15 digits)" maxlength="15"/>
+        <input type="number" id="imei" placeholder="Phone IMEI (15 digits)" maxlength="15" required list="repair-type"/>
+          <datalist id="repair-type">
+           <option value="351111111111111">
+          <option value="35000000000000">
+          </datalist>
         <input id="description" placeholder="Repair Description" required list="repair-type" />
         <datalist id="repair-type">
           <option value="Frp Unlock">
@@ -99,14 +101,26 @@
           <option value="Other">
         </datalist>
         <input type="number" id="amount" placeholder="Amount Charged ($)" required />
-      <button type="button" id="snapBtn">📷 Snap Photo</button>
+    <div class="imagebox">
       <input type="file" id="cameraInput" accept="image/*" capture="environment" style="display:none;" />
-      <div id="previewBox"></div>  
+      <button type="button" id="snapBtn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" style="vertical-align:middle;margin-right:4px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h3.17a2 2 0 0 0 1.41-.59l1.83-1.82A2 2 0 0 1 10.83 2h2.34a2 2 0 0 1 1.42.59l1.83 1.82A2 2 0 0 0 17.83 5H21a2 2 0 0 1 2 2z"/>
+          <circle cx="12" cy="13" r="4"/>
+        </svg>
+        Snap Photo
+      </button>
+      <div id="previewBox"></div>
+    </div>  
         <button type="submit">Add Repair</button>
       </form> 
 </div>
-     <!--End of Add Form -->
+<!--End of Add Form -->
+
+<div class="loader" id="globalLoader" style="display:none;">
+  <div class="spinner"></div>
+</div>
   <script src="https://telegram.org/js/telegram-web-app.js "></script>
-  <script src="app.js?v=1.b"></script>
+  <script src="app.js?v=1.c"></script>
 </body>
 </html>

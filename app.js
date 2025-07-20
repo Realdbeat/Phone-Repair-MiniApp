@@ -37,12 +37,14 @@ const WebApp = Telegram.WebApp;
           } catch (e) {
             console.error("Failed to parse stored data");
             WebApp.showAlert('Failed to parse stored data! Error: ' + e);
+            toggleloadder(false); // Hide loader after upload
           }
         } else {
           WebApp.showAlert('No repairs found!');
           repairs = [];
           renderRepairs();
           updateTotals();
+          toggleloadder(false); // Hide loader after upload
         }
       });
     }
@@ -110,6 +112,7 @@ const WebApp = Telegram.WebApp;
       filteredRepairs = [...repairs];
       renderFilteredRepairs();
       enableLongPressEditDelete();
+      toggleloadder(false); // Hide loader after upload
     }
 
     function updateTotals() {
@@ -241,6 +244,12 @@ const WebApp = Telegram.WebApp;
   }
    }
 
+  function toggleloadder(show) {
+  // Show or hide the global loader
+  // Use 'flex' to center the loader in the viewport
+  (show) ? document.getElementById('globalLoader').style.display = 'flex' : document.getElementById('globalLoader').style.display = 'none';
+   }
+
     function formatNumbers(num) {
         if (num >= 1000000) {
             return (num / 1000000).toFixed(1) + 'M';
@@ -257,6 +266,14 @@ document.getElementById('snapBtn').onclick = function() {
 
 
 
+
+document.getElementById('globalLoader').onclick = function() {
+  WebApp.showAlert('😌🙏Please Hold sever side is been Exucte loader will go on it own.💯😊');
+ // toggleloadder(false); // Hide loader on click
+};
+
+
+
 // Replace with your Cloudinary cloud name and unsigned upload preset
 const CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/dd2skzasq/image/upload';
 const CLOUDINARY_UPLOAD_PRESET = 'repair-upload';
@@ -264,7 +281,7 @@ const CLOUDINARY_UPLOAD_PRESET = 'repair-upload';
 document.getElementById('cameraInput').onchange = function(event) {
   const file = event.target.files[0];
   if (!file) return;
-
+  toggleloadder(true); // Show loader while processing
   const reader = new FileReader();
   reader.onload = function(e) {
     const img = new Image();
@@ -291,12 +308,15 @@ document.getElementById('cameraInput').onchange = function(event) {
         .then(data => {
           if (data.secure_url) {
             document.getElementById('previewBox').innerHTML = `<img src="${data.secure_url}" id="scanimg" style="max-width:100%;max-height:200px;border:1px solid #ccc;" />`;
+            toggleloadder(false); // Hide loader after upload
           } else {
             document.getElementById('previewBox').innerHTML = `<span style="color:red;">Upload failed</span>`;
+            toggleloadder(false); // Hide loader after upload
           }
         })
         .catch(() => {
           document.getElementById('previewBox').innerHTML = `<span style="color:red;">Upload error</span>`;
+          toggleloadder(false); // Hide loader after upload
         });
       }, 'image/jpeg', 0.1); // 10% quality
     };
@@ -351,6 +371,30 @@ document.getElementById('cameraInput').onchange = function(event) {
 
 */
 
+// Handle search input
+document.addEventListener('DOMContentLoaded', function() {
+  const form = document.getElementById('repairForm');
+  if (!form) return;
+  const inputs = Array.from(form.querySelectorAll('input,button,textarea,select')).filter(el => el.type !== 'hidden' && el.style.display !== 'none' && !el.disabled);
+
+  inputs.forEach((input, idx) => {
+    input.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        // Find next visible, enabled input
+        let next = inputs[idx + 1];
+        while (next && (next.disabled || next.style.display === 'none')) {
+          next = inputs[++idx + 1];
+        }
+        if (next) {
+          next.focus();
+        }
+      }
+    });
+  });
+});
+
+toggleloadder(true); // Show loader on start
 // Enable long press to show edit/delete options
 // Uncomment the line below to enable long press edit/delete functionality
 //enableLongPressEditDelete();
