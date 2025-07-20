@@ -246,6 +246,57 @@ document.getElementById('snapBtn').onclick = function() {
   document.getElementById('cameraInput').click();
 };
 
+
+
+// Replace with your Cloudinary cloud name and unsigned upload preset
+const CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/dd2skzasq/image/upload';
+const CLOUDINARY_UPLOAD_PRESET = 'repair-upload';
+
+document.getElementById('cameraInput').onchange = function(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const img = new Image();
+    img.onload = function() {
+      // Compress image to 10% quality
+      const canvas = document.createElement('canvas');
+      canvas.width = img.width;
+      canvas.height = img.height;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0);
+
+      canvas.toBlob(function(blob) {
+        // Prepare form data for Cloudinary
+        const formData = new FormData();
+        formData.append('file', blob, 'photo.jpg');
+        formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+
+        // Upload to Cloudinary
+        fetch(CLOUDINARY_URL, {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.secure_url) {
+            document.getElementById('previewBox').innerHTML = `<img src="${data.secure_url}" style="max-width:100%;max-height:200px;border:1px solid #ccc;" />`;
+          } else {
+            document.getElementById('previewBox').innerHTML = `<span style="color:red;">Upload failed</span>`;
+          }
+        })
+        .catch(() => {
+          document.getElementById('previewBox').innerHTML = `<span style="color:red;">Upload error</span>`;
+        });
+      }, 'image/jpeg', 0.1); // 10% quality
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+};
+/*php format 
+
 document.getElementById('cameraInput').onchange = function(event) {
   const file = event.target.files[0];
   if (!file) return;
@@ -288,6 +339,8 @@ document.getElementById('cameraInput').onchange = function(event) {
   };
   reader.readAsDataURL(file);
 };
+
+*/
 
 // Enable long press to show edit/delete options
 // Uncomment the line below to enable long press edit/delete functionality
