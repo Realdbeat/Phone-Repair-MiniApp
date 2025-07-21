@@ -150,7 +150,6 @@ const WebApp = Telegram.WebApp;
       });
 
       totalsDiv.innerHTML = `
-        <h3>📊 Totals Calculation</h3>
         <div class='totals-main'>
         <div class='daily'>
         <h2>Daily Totals</h2>
