@@ -270,6 +270,13 @@ document.getElementById('snapBtn').onclick = function() {
 
 
 
+document.getElementById('h2s').onclick = function() {
+  toggleloadder(true); // Show loader on click
+  WebApp.showAlert('😌🙏Please Hold server side is been Exucte loader will go on it own.💯😊' );
+};
+
+
+
 
 document.getElementById('globalLoader').onclick = function() {
   WebApp.showAlert('😌🙏Please Hold sever side is been Exucte loader will go on it own.💯😊');
@@ -306,13 +313,14 @@ document.getElementById('cameraInput').onchange = function(event) {
       canvas.height = img.height;
       const ctx = canvas.getContext('2d');
       ctx.drawImage(img, 0, 0);
-
+       toggleloadder(true); // Show loader while uploading
+      // Convert canvas to blob
       canvas.toBlob(function(blob) {
         // Prepare form data for Cloudinary
         const formData = new FormData();
         formData.append('file', blob, 'photo.jpg');
         formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
-        toggleloadder(true); // Show loader while uploading
+ 
         // Upload to Cloudinary
         fetch(CLOUDINARY_URL, {
           method: 'POST',
